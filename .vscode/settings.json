@@ -1,4 +1,6 @@
 {
     "editor.formatOnSave": true,
-    "prettier.singleQuote": true
+    "prettier.singleQuote": true,
+    "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+    "C_Cpp.inlayHints.autoDeclarationTypes.showOnLeft": true
 }
