@@ -1,13 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit OpeningHours{% endblock %}
+{% block title %}MODIFIER LES INFORMATIONS
+{% endblock %}
 
 {% block body %}
-    <h1>Edit OpeningHours</h1>
+	{% block header %}
+		{% include "navbarAdmin/headerAdmin.html.twig" %}
+	{% endblock %}
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase">MODIFIER LES INFORMATIONS</h1>
 
-    {{ include('opening_hours/_form.html.twig', {'button_label': 'Update'}) }}
+					{{ include('opening_hours/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_opening_hours_index') }}">back to list</a>
+					<a href="{{ path('app_opening_hours_index') }}">Retour à liste</a>
 
-    {{ include('opening_hours/_delete_form.html.twig') }}
+					{{ include('opening_hours/_delete_form.html.twig') }}
+
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html.twig"%}
+{% block body %}
+	{% block header %}
+		{% include "partials/header/header.html.twig" %}
+        <main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+					{{ form(formulaire)}}
+			{# <button class="btn">{{ button_label|default('Sauvegarder') }}</button> #}
+
+			</div>
+		</section>
+	</main>
+
+		{% endblock %}
+
+		{% block footer %}
+			{% include "partials/footer.html.twig" %}
+		{% endblock %}
+	{% endblock %}

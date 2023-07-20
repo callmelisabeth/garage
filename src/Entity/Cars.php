@@ -23,11 +23,14 @@ class Cars
     #[ORM\Column]
     private ?int $kilometers = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $year_in_circulation = null;
-
     #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    private ?string $image ;
+
+    // Constructor
+    public function __construct()
+    {
+        
+    }
 
 
     public function getId(): ?int
@@ -67,18 +70,6 @@ class Cars
     public function setKilometers(int $kilometers): static
     {
         $this->kilometers = $kilometers;
-
-        return $this;
-    }
-
-    public function getYearInCirculation(): ?\DateTimeInterface
-    {
-        return $this->year_in_circulation;
-    }
-
-    public function setYearInCirculation(\DateTimeInterface $year_in_circulation): static
-    {
-        $this->year_in_circulation = $year_in_circulation;
 
         return $this;
     }

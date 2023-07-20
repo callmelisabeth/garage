@@ -1,35 +1,52 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Services index{% endblock %}
+{% block title %}Liste des Services
+{% endblock %}
 
 {% block body %}
-    <h1>Services index</h1>
+	{% block header %}
+		{% include "navbarAdmin/headerAdmin.html.twig" %}
+	{% endblock %}
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase">Services index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Service</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for service in services %}
-            <tr>
-                <td>{{ service.id }}</td>
-                <td>{{ service.service }}</td>
-                <td>
-                    <a href="{{ path('app_services_show', {'id': service.id}) }}">show</a>
-                    <a href="{{ path('app_services_edit', {'id': service.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="3">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Service</th>
+								<th>>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for service in services %}
+								<tr>
+									<td>{{ service.id }}</td>
+									<td>{{ service.service }}</td>
+									<td>
+										<a href="{{ path('app_cars_show', {'id': car.id}) }}">
+											<i class="bi bi-eye"></i>
+										</a>
+										<a href="{{ path('app_cars_edit', {'id': car.id}) }}">
+											<i class="bi bi-pencil"></i>
+										</a>
+									</td>
+								</tr>
+							{% else %}
+								<tr>
+									<td colspan="3">Aucun service trouvé</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
 
-    <a href="{{ path('app_services_new') }}">Create new</a>
+					<a href="{{ path('app_services_new') }}">Ajouter une nouveau service</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}

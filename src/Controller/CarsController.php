@@ -6,19 +6,22 @@ use App\Entity\Cars;
 use App\Form\CarsType;
 use App\Repository\CarsRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 #[Route('/cars')]
 class CarsController extends AbstractController
 {
     #[Route('/', name: 'app_cars_index', methods: ['GET'])]
-    public function index(CarsRepository $carsRepository): Response
+    public function index(CarsRepository $carsRepository,  ): Response
     {
+        $cars = $carsRepository->findAll();
         return $this->render('cars/index.html.twig', [
-            'cars' => $carsRepository->findAll(),
+            'cars' => $cars
         ]);
     }
 
@@ -26,10 +29,10 @@ class CarsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $car = new Cars();
-        $form = $this->createForm(CarsType::class, $car);
-        $form->handleRequest($request);
+        $formCar = $this->createForm(CarsType::class, $car);
+        $formCar->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formCar->isSubmitted() && $formCar->isValid()) {
             $entityManager->persist($car);
             $entityManager->flush();
 
@@ -38,7 +41,7 @@ class CarsController extends AbstractController
 
         return $this->renderForm('cars/new.html.twig', [
             'car' => $car,
-            'form' => $form,
+            'formCar' => $formCar,
         ]);
     }
 
@@ -53,10 +56,10 @@ class CarsController extends AbstractController
     #[Route('/{id}/edit', name: 'app_cars_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cars $car, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(CarsType::class, $car);
-        $form->handleRequest($request);
+        $formCar = $this->createForm(CarsType::class, $car);
+        $formCar->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($formCar->isSubmitted() && $formCar->isValid()) {
             $entityManager->flush();
 
             return $this->redirectToRoute('app_cars_index', [], Response::HTTP_SEE_OTHER);
@@ -64,7 +67,7 @@ class CarsController extends AbstractController
 
         return $this->renderForm('cars/edit.html.twig', [
             'car' => $car,
-            'form' => $form,
+            'formCar' => $formCar,
         ]);
     }
 

@@ -1,38 +1,47 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cars{% endblock %}
+{% block title %}INFORMATIONS
+{% endblock %}
 
 {% block body %}
-    <h1>Cars</h1>
+	{% block header %}
+		{% include "navbarAdmin/headerAdmin.html.twig" %}
+	{% endblock %}
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase">INFORMATIONS</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ car.id }}</td>
-            </tr>
-            <tr>
-                <th>Brand</th>
-                <td>{{ car.brand }}</td>
-            </tr>
-            <tr>
-                <th>Price</th>
-                <td>{{ car.price }}</td>
-            </tr>
-            <tr>
-                <th>Kilometers</th>
-                <td>{{ car.kilometers }}</td>
-            </tr>
-            <tr>
-                <th>Year_in_circulation</th>
-                <td>{{ car.yearInCirculation ? car.yearInCirculation|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>Id</th>
+								<td>{{ car.id }}</td>
+							</tr>
+							<tr>
+								<th>Marques</th>
+								<td>{{ car.brand }}</td>
+							</tr>
+							<tr>
+								<th>Prix</th>
+								<td>{{ car.price }}</td>
+							</tr>
+							<tr>
+								<th>Kilomètres</th>
+								<td>{{ car.kilometers }}</td>
+							</tr>
+							
+						</tbody>
+					</table>
 
-    <a href="{{ path('app_cars_index') }}">back to list</a>
+					<bouton href="{{ path('app_cars_index') }}">Retour à la liste</bouton>
 
-    <a href="{{ path('app_cars_edit', {'id': car.id}) }}">edit</a>
+		
+				</div>
+			</div>
+		</section>
+	</main>
 
-    {{ include('cars/_delete_form.html.twig') }}
+	{{ include('cars/_delete_form.html.twig') }}
 {% endblock %}

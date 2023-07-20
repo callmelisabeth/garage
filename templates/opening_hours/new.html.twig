@@ -1,11 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New OpeningHours{% endblock %}
+{% block title %}Ajouter un nouveau jour d'ouvertures
+{% endblock %}
 
 {% block body %}
-    <h1>Create new OpeningHours</h1>
+	{% block header %}
+		{% include "navbarAdmin/headerAdmin.html.twig" %}
+	{% endblock %}
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase">Ajouter un nouveau jour d'ouvertures</h1>
 
-    {{ include('opening_hours/_form.html.twig') }}
+					{{ include('opening_hours/_form.html.twig') }}
 
-    <a href="{{ path('app_opening_hours_index') }}">back to list</a>
+					<a href="{{ path('app_opening_hours_index') }}">Retour à liste des horaires</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}

@@ -1,11 +1,24 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Services{% endblock %}
+{% block title %}Ajouter un nouveau Service
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Services</h1>
+	{% block header %}
+		{% include "navbarAdmin/headerAdmin.html.twig" %}
+	{% endblock %}
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase">Ajouter un nouveau service</h1>
 
-    {{ include('services/_form.html.twig') }}
+					{{ include('services/_form.html.twig') }}
 
-    <a href="{{ path('app_services_index') }}">back to list</a>
+					<a href="{{ path('app_services_index') }}">Retour à liste</a>
+
+				</div>
+			</div>
+		</section>
+	</main>
 {% endblock %}

@@ -1,0 +1,34 @@
+{% block header %}
+	{# navbar #}
+
+	<nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="/">Garage V.pavot</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarColor03">
+
+				<div class="d-flex">
+					<ul class="navbar-nav me-auto d-flex">
+						<li class="nav-item">
+							<a class="nav-link active text-uppercase" href="{{ path('vehicule') }}">VEHICULE
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-uppercase" href="{{ path('nosPrestations') }}">NOS PRESTATIONS</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-uppercase" href="{{ path('contact') }}">CONTACT</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link text-uppercase" href="{{ path('apropos') }}">A PROPOS</a>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+{% endblock %}

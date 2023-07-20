@@ -16,6 +16,9 @@ class Services
     #[ORM\Column(length: 255)]
     private ?string $service = null;
 
+    #[ORM\ManyToOne(inversedBy: 'relation')]
+    private ?User $user = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -29,6 +32,18 @@ class Services
     public function setService(string $service): static
     {
         $this->service = $service;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }
