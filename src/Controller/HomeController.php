@@ -12,10 +12,9 @@ class HomeController extends AbstractController
   #[Route('/', 'home.index', methods: ['GET'])]
   public function index(CarsRepository $carsRepository): Response
   {
-    $cars = $carsRepository->findAll();
-    return $this->render('home.html.twig', [
-      'cars' => $cars
-      
-  ]);
+    // $cars = $carsRepository->findAll();
+    return $this->render('home.html.twig',
+      );
+    //['cars' => $cars]
   }
 }

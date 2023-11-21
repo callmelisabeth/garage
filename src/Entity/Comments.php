@@ -14,37 +14,82 @@ class Comments
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $title = null;
+
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $feedback = null;
+    private ?string $content = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $name = null;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    private ?int $grade = null;
+
+    #[ORM\Column]
+    private ?bool $viewable = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getFeedback(): ?string
+    public function getTitle(): ?string
     {
-        return $this->feedback;
+        return $this->title;
     }
 
-    public function setFeedback(string $feedback): static
+    public function setTitle(?string $title): static
     {
-        $this->feedback = $feedback;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getContent(): ?string
     {
-        return $this->createdAt;
+        return $this->content;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setContent(string $content): static
     {
-        $this->createdAt = $createdAt;
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getGrade(): ?int
+    {
+        return $this->grade;
+    }
+
+    public function setGrade(int $grade): static
+    {
+        $this->grade = $grade;
+
+        return $this;
+    }
+
+    public function isViewable(): ?bool
+    {
+        return $this->viewable;
+    }
+
+    public function setViewable(bool $viewable): static
+    {
+        $this->viewable = $viewable;
 
         return $this;
     }

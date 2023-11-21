@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ContactRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ContactRepository::class)]
@@ -13,17 +14,26 @@ class Contact
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $number = null;
+    private ?string $subject = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $message = null;
+
+    #[ORM\Column]
+    private ?int $number = null;
+
+    #[ORM\Column]
+    private ?bool $handle = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $dateCreated = null;
 
     public function getId(): ?int
     {
@@ -35,7 +45,7 @@ class Contact
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(?string $name): static
     {
         $this->name = $name;
 
@@ -54,14 +64,14 @@ class Contact
         return $this;
     }
 
-    public function getNumber(): ?string
+    public function getSubject(): ?string
     {
-        return $this->number;
+        return $this->subject;
     }
 
-    public function setNumber(string $number): static
+    public function setSubject(string $subject): static
     {
-        $this->number = $number;
+        $this->subject = $subject;
 
         return $this;
     }
@@ -74,6 +84,42 @@ class Contact
     public function setMessage(string $message): static
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(int $number): static
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function isHandle(): ?bool
+    {
+        return $this->handle;
+    }
+
+    public function setHandle(bool $handle): static
+    {
+        $this->handle = $handle;
+
+        return $this;
+    }
+
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+        return $this->dateCreated;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): static
+    {
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }

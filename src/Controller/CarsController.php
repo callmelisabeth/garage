@@ -16,7 +16,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/cars')]
 class CarsController extends AbstractController
 {
-    #[Route('/', name: 'app_cars_index', methods: ['GET'])]
+    #[Route('/vehicule', name: 'app_cars_index', methods: ['GET'])]
     public function index(CarsRepository $carsRepository,  ): Response
     {
         $cars = $carsRepository->findAll();
@@ -25,7 +25,7 @@ class CarsController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_cars_new', methods: ['GET', 'POST'])]
+    #[Route('vehicule/new', name: 'app_cars_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $car = new Cars();
