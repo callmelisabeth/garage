@@ -37,13 +37,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $lastname = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Services::class)]
-    private Collection $relation;
-
-    public function __construct()
-    {
-        $this->relation = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {

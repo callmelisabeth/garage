@@ -4,62 +4,59 @@
 {% endblock %}
 
 {% block body %}
-{% for service in services|slice(0,2) %}
-						<article class=" mt-2 mb-2">
-							<div class="card-body">
-								<h3 class="card-title text-dark">{{service.title}}</h3>
-								<p class="card-text">{{service.content}}</p>
-							</div>
-						</article>
-					{% endfor %}
-	
+	{% if  app.user.roles == null  %}
+
+		{% for service in services|slice(0,2) %}
+			<article class=" mt-2 mb-2">
+				<div class="card-body">
+					<h3 class="card-title text-dark">{{service.title}}</h3>
+					<p class="card-text">{{service.content}}</p>
+				</div>
+			</article>
+		{% endfor %}
+
+	{% endif %}
+
 
 	{% if app.user.lastname == 'Parrot' %}
-	
-	
-	<main class="container blockbody">
-		<section class="row">
-			<div class="col-12">
-				<div class="titlePage">
-					<h1 class="text-uppercase">Services index</h1>
 
-					<table class="table">
-						<thead>
-							<tr>
-								<th>Id</th>
-								<th>Service</th>
-								<th>>Actions</th>
-							</tr>
-						</thead>
-						<tbody>
-							{% for service in services %}
+
+		<main class="container blockbody">
+			<section class="row">
+				<div class="col-12">
+					<div class="titlePage">
+						<h1 class="text-uppercase">Services index</h1>
+
+						<table class="table">
+							<thead>
 								<tr>
-									<td>{{ service.id }}</td>
-									<td>{{ service.title }}</td>
-									<td>{{ service.content }}</td>
-									<td>
-										<a href="{{ path('app_cars_show', {'id': car.id}) }}">
-											<i class="bi bi-eye"></i>
-										</a>
-										<a href="{{ path('app_cars_edit', {'id': car.id}) }}">
-											<i class="bi bi-pencil"></i>
-										</a>
-									</td>
+									<th>Id</th>
+									<th>Service</th>
+									<th>>Actions</th>
 								</tr>
-							{% else %}
-								<tr>
-									<td colspan="3">Aucun service trouvé</td>
-								</tr>
-							{% endfor %}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{% for service in services %}
+									<tr>
+										<td>{{ service.id }}</td>
+										<td>{{ service.title }}</td>
+										<td>{{ service.content }}</td>
 
-					<a href="{{ path('app_services_new') }}">Ajouter une nouveau service</a>
+									</tr>
+								{% else %}
+									<tr>
+										<td colspan="3">Aucun service trouvé</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
 
+						<a href="{{ path('app_services_new') }}">Ajouter une nouveau service</a>
+
+					</div>
 				</div>
-			</div>
-		</section>
-	</main>
+			</section>
+		</main>
 	{% endif %}
-	
+
 {% endblock %}

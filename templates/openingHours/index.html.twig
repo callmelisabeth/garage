@@ -1,56 +1,28 @@
-{% block footer %}
-	<!-- Footer -->
-	<footer
-		class="bg-dark footer mt-auto ">
-		<!-- Grid container -->
-		<div
-			class="container p-4">
+{% extends 'base.html.twig' %}
 
-			<!-- Section: Links -->
-			<section
-				class="">
-				<!--Grid row-->
-				<div
-					class="row">
-					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0 nameCompany">
-						<h2 class="text-white text-uppercase">Garage V.Pavot</h2>
-					</div>
-					<!--Grid column-->
-					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-						<h4 class="text-white text-uppercase">Resources</h4>
+{% block title %}Liste des jours d'ouvertures
+{% endblock %}
 
-						<ul class="list-unstyled mb-0">
-							<li>
-								<a href="#!" class="text-white">C.G.U - C.G.P</a>
-							</li>
-							<li>
-								<a href="#!" class="text-white">Blog</a>
-							</li>
-							<li>
-								<a href="#!" class="text-white">Gestion des cookies</a>
-							</li>
+{% block body %}
 
-						</ul>
-					</div>
-					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0 ">
-					<h4 class="text-white text-uppercase">Adresse</h4>
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase">Liste des jours d'ouvertures</h1>
 
-					<address class="p-2 m-6">
-						16 Avenue du Général de  Lecler<br/>
-						77340 Pontault-Combault
-						<br/>
-						<a href="tel:+33102030405">Tel: 01 02 03 04 05
-						</a>
-					</address>
-				</div>
-					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-						<h4 class="text-white text-uppercase">HORAIRES</h4>
-
-						{% for openingHour in openingHours %}
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Jours</th>
+								<th>>Horaires d'ouvertures</th>
+								<th>Horaires de fermetures</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for openingHour in openingHours %}
 							<div id="table">
 								<table>
 									<thead>
@@ -181,27 +153,19 @@
 									</tbody>
 								</table>
 							</div>
-						{% endfor %}
-					</div>
+					
+							{% else %}
+								<tr>
+									<td colspan="6">Aucune jour d'ouverture trouvé</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+
+					<a href="{{ path('app_openingHours_new') }}">Ajouter une nouveau jour d'ouverture</a>
 
 				</div>
-				<!--Grid column-->
-
-				<!--Grid column-->
-				
-
-
 			</div>
 		</section>
-		<!-- Grid container -->
-
-		<!-- Copyright -->
-		<div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-			© 2020 Copyright:
-			<a class="text-white" href="">Garage V.Pavot</a>
-		</div>
-		<!-- Copyright -->
-	</div>
-
-</footer>
-<!-- Footer -->{% endblock %}
+	</main>
+{% endblock %}

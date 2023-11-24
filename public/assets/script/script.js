@@ -31,26 +31,7 @@
 //       })
 //     })
 //   }
-  document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('filter-form');
-    const carList = document.getElementById('car-list');
-    
-    form.addEventListener('submit', function (event) {
-    event.preventDefault(); // Empêche la soumission par défaut du formulaire
-    
-    const formData = new FormData(form);
-    const url = '{{ path('') }}';
-    
-    fetch(url, {
-    method: 'POST',
-    body: formData
-    }).then(response => response.text()).then(data => {
-    carList.innerHTML = data;
-    }).catch(error => {
-    console.error('Erreur :', error);
-    });
-    });
-    });
+
     
     // Set  price & kilometer filter to its maximum value as the default
     const maxPriceInput = document.getElementById('max-price');
