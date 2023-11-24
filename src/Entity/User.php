@@ -79,7 +79,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = ['ROLE_USER'];
+        $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -139,33 +139,5 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Services>
-     */
-    public function getRelation(): Collection
-    {
-        return $this->relation;
-    }
-
-    public function addRelation(Services $relation): static
-    {
-        if (!$this->relation->contains($relation)) {
-            $this->relation->add($relation);
-            $relation->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRelation(Services $relation): static
-    {
-        if ($this->relation->removeElement($relation)) {
-            // set the owning side to null (unless already changed)
-            if ($relation->getUser() === $this) {
-                $relation->setUser(null);
-            }
-        }
-
-        return $this;
-    }
+    
 }

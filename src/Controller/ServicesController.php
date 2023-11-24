@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/services')]
 class ServicesController extends AbstractController
 {
-    #[Route('/', name: 'app_services_index', methods: ['GET'])]
+    #[Route('/services', name: 'services.index', methods: ['GET'])]
     public function index(ServicesRepository $servicesRepository): Response
     {
         return $this->render('services/index.html.twig', [
@@ -28,12 +28,13 @@ class ServicesController extends AbstractController
         $service = new Services();
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($service);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('services/new.html.twig', [
@@ -42,9 +43,10 @@ class ServicesController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_services_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'services.show', methods: ['GET'])]
     public function show(Services $service): Response
     {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
         return $this->render('services/show.html.twig', [
             'service' => $service,
         ]);
@@ -55,11 +57,12 @@ class ServicesController extends AbstractController
     {
         $form = $this->createForm(ServicesType::class, $service);
         $form->handleRequest($request);
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('services/edit.html.twig', [
@@ -74,8 +77,9 @@ class ServicesController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$service->getId(), $request->request->get('_token'))) {
             $entityManager->remove($service);
             $entityManager->flush();
+            $this->denyAccessUnlessGranted("ROLE_ADMIN");
         }
 
-        return $this->redirectToRoute('app_services_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -29,12 +29,12 @@ class Cars
     private ?int $price = null;
 
     #[ORM\Column]
-    private ?int $kilometer = null;
+    private ?int $kilometers = null;
 
     #[ORM\Column]
     private ?int $date = null;
 
-    #[ORM\OneToMany(mappedBy: 'image', targetEntity: Image::class, cascade:['persist', 'remove'] )]
+    #[ORM\OneToMany(mappedBy: 'images', targetEntity: Image::class, cascade:['persist', 'remove'] )]
     private Collection $images;
 
     public function __construct()
@@ -85,14 +85,14 @@ class Cars
         return $this;
     }
 
-    public function getKilometer(): ?int
+    public function getKilometers(): ?int
     {
-        return $this->kilometer;
+        return $this->kilometers;
     }
 
-    public function setKilometer(int $kilometer): static
+    public function setKilometers(int $kilometers): static
     {
-        $this->kilometer = $kilometer;
+        $this->kilometers = $kilometers;
 
         return $this;
     }

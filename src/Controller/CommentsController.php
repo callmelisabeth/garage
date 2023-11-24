@@ -27,7 +27,6 @@ class CommentsController extends AbstractController
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $comment = new Comments();
-        $comment -> setCreatedAt(new DateTimeImmutable());
         $form = $this->createForm(CommentsType::class, $comment);
         $form->handleRequest($request);
 

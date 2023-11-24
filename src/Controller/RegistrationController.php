@@ -15,7 +15,7 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 
 class RegistrationController extends AbstractController
 {
-    #[Route('/creation_utilisateur', name: 'app_register')]
+    #[Route('/creation_utilisateur', name: 'register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
     {
         $user = new User();

@@ -1,5 +1,64 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Liste des voitures
+{% endblock %}
+
+{% block body %}
+
+
+	<main class="container blockbody">
+		<section class="row">
+			<div class="col-12">
+				<div class="titlePage">
+					<h1 class="text-uppercase text-center">Liste des voitures</h1>
+
+				</div>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Marques</th>
+							<th>Prix</th>
+							<th>Kilomètres</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for car in cars %}
+							<tr>
+								<td>{{ car.id }}</td>
+								<td class="text-uppercase">
+									{{ car.brand }}</td>
+								<td>{{ car.price }}</td>
+								<td>{{ car.kilometers }}</td>
+								<td>
+									<a href="{{ path('app_cars_show', {'id': car.id}) }}">
+										<i class="bi bi-eye"></i>
+									</a>
+									<a href="{{ path('app_cars_edit', {'id': car.id}) }}">
+										<i class="bi bi-pencil"></i>
+									</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="6">Aucune voiture trouvée</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<a href="{{ path('app_cars_new') }}">Ajouter une nouvelle voiture
+				</a>
+
+			</div>
+		</section>
+	</main>
+{% endblock %}
+
+{# {% extends 'base.html.twig' %}
+
 {% block title %}INFORMATIONS
 {% endblock %}
 
@@ -44,4 +103,4 @@
 	</main>
 
 	{{ include('cars/_delete_form.html.twig') }}
-{% endblock %}
+{% endblock %} #}

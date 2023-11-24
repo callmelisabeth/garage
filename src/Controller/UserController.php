@@ -15,7 +15,7 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 #[Route('/user')]
 class UserController extends AbstractController
 {
-    #[Route('/', name: 'app_user_index', methods: ['GET'])]
+    #[Route('/', name: 'user.index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {
         return $this->render('user/index.html.twig', [
@@ -51,7 +51,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
+    #[Route('/{id}', name: 'user.show', methods: ['GET'])]
     public function show(User $user): Response
     {
         return $this->render('user/show.html.twig', [

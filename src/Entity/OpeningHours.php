@@ -54,6 +54,12 @@ class OpeningHours
     private ?\DateTimeInterface $openingThursdayMorning = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $closingThursdayMorning = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $openingThursdayAfternoon = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $closingThursdayAfternoon = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
@@ -121,24 +127,24 @@ class OpeningHours
         return $this;
     }
 
-    public function getOpeningMondayAfeternoon(): ?\DateTimeInterface
+    public function getOpeningMondayAfternoon(): ?\DateTimeInterface
     {
         return $this->openingMondayAfternoon;
     }
 
-    public function setOpeningMondayAfeternoon(\DateTimeInterface $openingMondayAfternoon): static
+    public function setOpeningMondayAfternoon(\DateTimeInterface $openingMondayAfternoon): static
     {
         $this->openingMondayAfternoon = $openingMondayAfternoon;
 
         return $this;
     }
 
-    public function getClosingMondayAfternon(): ?\DateTimeInterface
+    public function getClosingMondayAfternoon(): ?\DateTimeInterface
     {
         return $this->closingMondayAfternoon;
     }
 
-    public function setClosingMondayAfternon(\DateTimeInterface $closingMondayAfternoon): static
+    public function setClosingMondayAfternoon(\DateTimeInterface $closingMondayAfternoon): static
     {
         $this->closingMondayAfternoon = $closingMondayAfternoon;
 
@@ -217,12 +223,12 @@ class OpeningHours
         return $this;
     }
 
-    public function getOpeningWednesdayAfeternon(): ?\DateTimeInterface
+    public function getOpeningWednesdayAfternon(): ?\DateTimeInterface
     {
         return $this->openingWednesdayAfternoon;
     }
 
-    public function setOpeningWednesdayAfeternon(\DateTimeInterface $openingWednesdayAfternoon): static
+    public function setOpeningWednesdayAfternon(\DateTimeInterface $openingWednesdayAfternoon): static
     {
         $this->openingWednesdayAfternoon = $openingWednesdayAfternoon;
 
@@ -252,6 +258,18 @@ class OpeningHours
         return $this;
     }
 
+    public function getClosingThursdayMorning(): ?\DateTimeInterface
+    {
+        return $this->closingThursdayMorning;
+    }
+
+    public function setClosingThursdayMorning(\DateTimeInterface $closingThursdayMorning): static
+    {
+        $this->closingThursdayMorning = $closingThursdayMorning;
+
+        return $this;
+    }
+
     public function getClosingThursdayAfternoon(): ?\DateTimeInterface
     {
         return $this->closingThursdayAfternoon;
@@ -260,6 +278,18 @@ class OpeningHours
     public function setClosingThursdayAfternoon(\DateTimeInterface $closingThursdayAfternoon): static
     {
         $this->closingThursdayAfternoon = $closingThursdayAfternoon;
+
+        return $this;
+    }
+
+    public function getOpeningThursdayAfternoon(): ?\DateTimeInterface
+    {
+        return $this->openingThursdayAfternoon;
+    }
+
+    public function setOpeningThursdayAfternoon(\DateTimeInterface $openingThursdayAfternoon): static
+    {
+        $this->openingThursdayAfternoon = $openingThursdayAfternoon;
 
         return $this;
     }

@@ -1,13 +1,8 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Liste des voitures
-{% endblock %}
-
+{% extends "base.html.twig"%}
 {% block body %}
-	{% block header %}
-		{% include "navbarAdmin/headerAdmin.html.twig" %}
-	{% endblock %}
-	<main class="container blockbody">
+
+
+	{% if app.user %}
 		<section class="row">
 			<div class="col-12">
 				<div class="titlePage">
@@ -34,7 +29,7 @@
 								<td>{{ car.price }}</td>
 								<td>{{ car.kilometers }}</td>
 								<td>
-									<a href="{{ path('app_cars_show', {'id': car.id}) }}">
+									<a href="{{ path('cars.show', {'id': car.id}) }}">
 										<i class="bi bi-eye"></i>
 									</a>
 									<a href="{{ path('app_cars_edit', {'id': car.id}) }}">
@@ -55,5 +50,74 @@
 
 			</div>
 		</section>
-	</main>
-{% endblock %}
+	
+	{% endif %}
+{% if not app.user  %} 
+	<h1 class="text-uppercase text-center">
+		Nos vehicules
+	</h1>
+	<div class="row g-0 text-center">
+		<div class="col-4 col-md-2">
+			<legend class="mt-4">Filtre</legend>
+			<form action="">
+				<div class="m-2">
+					<label for="max-price">Prix  :</label>
+					<input type="range" class="form-range" min="0" max="200000" step="500" name="price_max" id="" onchange="updateRangeValue(this, 'price_max_value')">
+					<p class="d-flex justify-content-end">
+						<span id="max-price-value"></span>
+						€
+						<br>
+					</p>
+				</div>
+				<div class="m-2">
+					<label for="max-kilometer">
+						Kilométrage
+					</label>
+					<input type="range" class="form-range" min="0" max="250000" step="10000" name="max_kilometer" id="max-kilometer" onchange="updateRangeValue(this, 'max-kilometer-value')">
+					<p class="d-flex justify-content-end">
+						<span id="max-kilometer-value"></span>
+						km
+					</p>
+				</div>
+				<div class="m-2">
+					<label for="min-date">
+						Année de Mise en Circulation :</label>
+					<input type="range" class="form-range" min="1950" max="2025" step="1" name="min_date" id="min-date" onchange="updateRangeValue(this, 'min-date-value')">
+					<p class="d-flex justify-content-end">
+						Après &nbsp;
+						<span id="min-date-value"></span>
+					</p>
+				</div>
+
+				<button type="submit" class="btn btn-primary m-2 align-self-center">Filtrer</button>
+			</form>
+		</div>
+		<div class="col-sm-6 col-md-8">
+			{% for car in cars %}
+
+
+				<div class="card">
+
+					<a href="">
+						<img src={{asset('asset/images/cars')~ car.images}} class="card-img-top" alt="...">
+
+					</a>
+					<div class="card-body">
+
+						<h5 class="card-title">{{car.brand}}</h5>
+						<p class="card-text">{{car.price}}</p>
+						<p class="card-text">{{car.kilometers}}</p>
+						<a href="#" class="btn btn-primary">Details</a>
+					</div>
+				</div>
+
+
+				-
+			{% endfor %}
+		</div>
+	</div>
+
+{% endif %}
+
+
+</div>{% endblock %}

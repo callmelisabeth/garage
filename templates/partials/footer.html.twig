@@ -1,7 +1,7 @@
 {% block footer %}
 	<!-- Footer -->
 	<footer
-		class="bg-dark text-center text-white">
+		class="bg-dark footer mt-auto py-3 bg-body-tertiary">
 		<!-- Grid container -->
 		<div
 			class="container p-4">
@@ -13,26 +13,10 @@
 				<div
 					class="row">
 					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-						<h4 class="text-white text-uppercase">PRESENTATION</h4>
-
-						<ul class="list-unstyled mb-0">
-							<li>
-								<a href="#!" class="text-white">A propos</a>
-							</li>
-							<li>
-								<a href="#!" class="text-white">Pourquoi nous choisir</a>
-							</li>
-							<li>
-								<a href="#!" class="text-white">Nos prix</a>
-							</li>
-							<li>
-								<a href="#!" class="text-white">Link 4</a>
-							</li>
-						</ul>
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0 nameCompany">
+						<h2 class="text-white text-uppercase">Garage V.Pavot</h2>
 					</div>
 					<!--Grid column-->
-
 					<!--Grid column-->
 					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 						<h4 class="text-white text-uppercase">Resources</h4>
@@ -47,38 +31,168 @@
 							<li>
 								<a href="#!" class="text-white">Gestion des cookies</a>
 							</li>
-							<li>
-								<a href="#!" class="text-white">Link 4</a>
-							</li>
+
 						</ul>
 					</div>
 					<!--Grid column-->
+					<div class="col-lg-3 col-md-6 mb-4 mb-md-0 ">
+					<h4 class="text-white text-uppercase">Adresse</h4>
 
+					<address class="p-2 m-6">
+						16 Avenue du Général de  Lecler<br/>
+						77340 Pontault-Combault
+						<br/>
+						<a href="tel:+33102030405">Tel: 01 02 03 04 05
+						</a>
+					</address>
+				</div>
 					<!--Grid column-->
 					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
 						<h4 class="text-white text-uppercase">HORAIRES</h4>
 
-						<p>Lundi 10H - 19H</p>
-						<p>Mardi 10H - 19H</p>
-						<p>Mercredi 10H - 19H</p>
-						<p>Jeudi 10H - 19H</p>
-						<p>Vendredi 10H - 19H</p>
-						<p>Samedi 10H - 19H</p>
-						<p>Dimanche Fermé</p>
+						{% for openingHour in openingHours %}
+							<div id="table">
+								<table>
+									<thead>
+										<legend class="footer-title">
+											Horaires d'ouvertures
+										</legend>
+									</thead>
 
-					</div>
-					<!--Grid column-->
+									{# Opening hours table #}
+									<tbody>
+										<tr>
+											{# Monday #}
+											<th scope="row">Lundi</th>
+											{% if openingHours.openingMondayMorning|date('H:i:s') and openingHours.openingMondayAfternoon|date('H:i:s') == "00:00:00" %}
+												{# Condition to get a "closing" message instead of opening hours #}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>
+													{{openingHours.openingMondayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingMondayMorning|date('H:i:s')|slice(0,5)}},
 
-					<!--Grid column-->
-					<div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-						<h2 class="text-white text-uppercase">Garage V.Pavot</h2>
+												</td>
+												<td>{{openingHours.openingMondayAfternoon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingMondayAfternoon|date('H:i:s')|slice(0,5)}}</td>
+											{% endif %}
+										</tr>
+										{# Tuesday #}
+										<tr>
+											<th scope="row">Mardi</th>
+											{% if openingHours.openingTuesdayMorning|date('H:i:s') and openingHours.openingTuesdayAfternoon|date('H:i:s') == "00:00:00" %}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>{{openingHours.openingTuesdayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingTuesdayMorning|date('H:i:s')|slice(0,5)}},</td>
+												<td>{{openingHours.openingTuesdayAfternoon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingTuesdayAfternoon|date('H:i:s')|slice(0,5)}}</td>
+											{% endif %}
+										</tr>
+										{# Wednesday #}
+										<tr>
+											<th scope="row">Mercredi</th>
+											{% if openingHours.openingWednesdayMorning|date('H:i:s') and openingHours.openingWednesdayAfternoon|date('H:i:s') == "00:00:00" %}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>{{openingHours.openingWednesdayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingWednesdayMorning|date('H:i:s')|slice(0,5)}},</td>
+												<td>{{openingHours.openingWednesdayAfternoon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingWednesdayAfternoon|date('H:i:s')|slice(0,5)}}</td>
+											{% endif %}
+										</tr>
+										{# Thursday #}
+										<tr>
+											<th scope="row">Jeudi</th>
+											{% if openingHours.openingThursdayMorning|date('H:i:s') and openingHours.openingThursdayAfternoon|date('H:i:s') == "00:00:00" %}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>{{openingHours.openingThursdayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingThursdayMorning|date('H:i:s')|slice(0,5)}},</td>
+												<td>{{openingHours.openingThursdayAfternoon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingThursdayAfternoon|date('H:i:s')|slice(0,5)}}</td>
+											{% endif %}
+										</tr>
+
+										{# Friday #}
+										<tr>
+											<th scope="row">Vendredi</th>
+											{% if openingHours.openingFridayMorning|date('H:i:s') and openingHours.openingFridayAfternon|date('H:i:s') == "00:00:00" %}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>{{openingHours.openingFridayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingFridayMorning|date('H:i:s')|slice(0,5)}},</td>
+												<td>{{openingHours.openingFridayAfternon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingFridayAfternon|date('H:i:s')|slice(0,5)}}</td>
+											{% endif %}
+										</tr>
+										{# Saturday #}
+										<tr>
+											<th scope="row">Samedi</th>
+											{% if openingHours.openingSaturdayMorning|date('H:i:s') and openingHours.openingSaturdayAfternoon|date('H:i:s') == "00:00:00" %}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>
+													{{openingHours.openingSaturdayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingSaturdayMorning|date('H:i:s')|slice(0,5)}},</td>
+												<td>{{openingHours.openingSaturdayAfternoon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingSaturdayAfternoon|date('H:i:s')|slice(0,5)}}</td>
+											{% endif %}
+										</tr>
+										{# Sunday #}
+										<tr>
+											<th scope="row">Dimanche</th>
+											{% if openingHours.openingSundayMorning|date('H:i:s') and openingHours.openingSundayAfternoon|date('H:i:s') == "00:00:00" %}
+												<td>Fermé
+												</td>
+											{% else %}
+												<td>
+
+													{{openingHours.openingSundayMorning|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingSundayMorning|date('H:i:s')|slice(0,5)}},
+												</td>
+
+												<td>
+													{{openingHours.openingSundayAfternoon|date('H:i:s')|slice(0,5)}}
+													-
+													{{openingHours.closingSundayAfternoon|date('H:i:s')|slice(0,5)}}
+												</td>
+											{% endif %}
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						{% endfor %}
 					</div>
-					<!--Grid column-->
+
 				</div>
-				<!--Grid row-->
-			</section>
-			<!-- Section: Links -->
-		</div>
+				<!--Grid column-->
+
+				<!--Grid column-->
+				
+
+
+			</div>
+		</section>
 		<!-- Grid container -->
 
 		<!-- Copyright -->
@@ -87,6 +201,7 @@
 			<a class="text-white" href="">Garage V.Pavot</a>
 		</div>
 		<!-- Copyright -->
-	</footer>
-	<!-- Footer -->
-{% endblock %}
+	</div>
+
+</footer>
+<!-- Footer -->{% endblock %}

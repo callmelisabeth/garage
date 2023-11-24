@@ -4,9 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{% block header %}
-		{% include "navbarAdmin/headerAdmin.html.twig" %}
-	{% endblock %}
+
 	<main class="container blockbody">
 		<section class="row">
 			<div class="col-12">
@@ -15,7 +13,7 @@
 
 					{{ include('cars/_form.html.twig') }}
 
-					<a href="{{ path('app_cars_index') }}">Retour à liste des voitures</a>
+					<a href="{{ path('cars.index') }}">Retour à liste des voitures</a>
 
 				</div>
 			</div>

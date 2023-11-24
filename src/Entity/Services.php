@@ -13,37 +13,54 @@ class Services
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $service = null;
 
-    #[ORM\ManyToOne(inversedBy: 'relation')]
-    private ?User $user = null;
+    #[ORM\Column(length: 255)]
+    private ?string $title = NULL;
+
+    #[ORM\Column(length: 600)] 
+    private string $content;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getService(): ?string
+ /**
+     * Get the value of title
+     */ 
+    public function getTitle()
     {
-        return $this->service;
+        return $this->title;
     }
 
-    public function setService(string $service): static
+    /**
+     * Set the value of title
+     *
+     * @return  self
+     */ 
+    public function setTitle($title)
     {
-        $this->service = $service;
+        $this->title = $title;
 
         return $this;
     }
 
-    public function getUser(): ?User
+    /**
+     * Get the value of content
+     */ 
+    public function getContent()
     {
-        return $this->user;
+        return $this->content;
     }
 
-    public function setUser(?User $user): static
+    /**
+     * Set the value of content
+     *
+     * @return  self
+     */ 
+    public function setContent($content)
     {
-        $this->user = $user;
+        $this->content = $content;
 
         return $this;
     }

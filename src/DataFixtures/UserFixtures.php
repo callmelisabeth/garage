@@ -24,6 +24,7 @@ class UserFixtures extends Fixture
             $this->passwordCoder->hashPassword($admin, 'admin')
         );
         $admin->setRoles(['ROLE_ADMIN']);
+        $manager->persist($admin);
         $manager->flush();
 
         $faker = Faker\Factory::create('fr_FR');
@@ -35,7 +36,9 @@ class UserFixtures extends Fixture
             $user->setPassword(
                 $this->passwordCoder->hashPassword($user, 'secret')
             );
+            $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
+            $manager->flush();
         }
     }
 }

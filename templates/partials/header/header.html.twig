@@ -3,32 +3,52 @@
 
 	<nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light" style="margin-bottom: 2em;">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/"><img src="public/assets/logo/logo_Garage_V.Parrot.png" alt=""></a>
+			<a class="navbar-brand" href="/"><img class="logo" src={{asset("/assets/logo/logo_Garage_V.Parrot.png")}} alt=""></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarColor03">
+				<ul class="navbar-nav me-auto ">
+					<li class="nav-item">
+						<a class="nav-link active text-uppercase" href="{{ path('cars.index') }}">VEHICULES
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase" href="{{ path('services.index') }}">PRESTATIONS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link text-uppercase" href="{{ path('contact') }}">CONTACT</a>
+					</li>
+					{# <li class="nav-item">
+											<a class="nav-link text-uppercase" href="{{ path('apropos') }}">A PROPOS</a>
+										</li> #}
+					{% if app.user %}
+						{% if app.user.email == 'admin@test.fr' %}
+							<li class="nav-item">
+								<a class="nav-link text-uppercase" href="{{ path('openingHours.index') }}">HORAIRES</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-uppercase" href="{{ path('services.index') }}">SERVICES</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-uppercase" href="{{ path('user.index') }}">UTILISATEURS</a>
+							</li>
+						{% endif %}
 
-				<div class="d-flex">
-					<ul class="navbar-nav me-auto d-flex">
 						<li class="nav-item">
-							<a class="nav-link active text-uppercase" href="{{ path('vehicule') }}">VEHICULE
-							</a>
+							<a class="nav-link text-uppercase" href="{{ path('app_comments_index') }}">COMMENTAIRES</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link text-uppercase" href="{{ path('nosPrestations') }}">NOS PRESTATIONS</a>
+							<a class="nav-link text-uppercase" href="{{ path('app_logout') }}">DECONNEXION</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link text-uppercase" href="{{ path('contact') }}">CONTACT</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link text-uppercase" href="{{ path('apropos') }}">A PROPOS</a>
-						</li>
+					{% endif %}
 
-					</ul>
-				</div>
+
+				</ul>
+
 			</div>
 		</div>
 	</nav>
+
 
 {% endblock %}
