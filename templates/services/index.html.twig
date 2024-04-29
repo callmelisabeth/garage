@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	{% if  app.user.roles == null  %}
+	{% if not  app.user   %}
 
 		{% for service in services|slice(0,2) %}
 			<article class=" mt-2 mb-2">
@@ -18,7 +18,7 @@
 	{% endif %}
 
 
-	{% if app.user.lastname == 'Parrot' %}
+	{% if app.user.roles == 'ROLES_ADMIN' %}
 
 
 		<main class="container blockbody">

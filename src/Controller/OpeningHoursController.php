@@ -25,6 +25,7 @@ class OpeningHoursController extends AbstractController
     #[Route('/new', name: 'app_openingHours_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $openingHours = new OpeningHours();
         $form = $this->createForm(OpeningHoursType::class, $openingHours);
         $form->handleRequest($request);
@@ -53,6 +54,7 @@ class OpeningHoursController extends AbstractController
     #[Route('/{id}/edit', name: 'app_openingHours_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, OpeningHours $openingHours, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted("ROLE_ADMIN");
         $form = $this->createForm(OpeningHoursType::class, $openingHours);
         $form->handleRequest($request);
 
@@ -66,16 +68,5 @@ class OpeningHoursController extends AbstractController
             'opening_hour' => $openingHours,
             'form' => $form,
         ]);
-    }
-
-    #[Route('/{id}', name: 'app_openingHours_delete', methods: ['POST'])]
-    public function delete(Request $request, OpeningHours $openingHours, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$openingHours->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($openingHours);
-            $entityManager->flush();
-        }
-
-        return $this->redirectToRoute('app_openingHours_index', [], Response::HTTP_SEE_OTHER);
     }
 }

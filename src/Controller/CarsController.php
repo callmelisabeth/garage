@@ -20,12 +20,9 @@ class CarsController extends AbstractController
     #[Route('/vehicule', name: 'cars.index', methods: ['GET'])]
     public function index(CarsRepository $carsRepository, ): Response
     {
-       
         return $this->render('cars/index.html.twig', [
             'cars' => $carsRepository,
         ]);
-
-       
     }
 
     #[Route('/new', name: 'app_cars_new', methods: ['GET', 'POST'])]
@@ -54,6 +51,7 @@ class CarsController extends AbstractController
     #[Route('/{id}', name: 'cars.show', methods: ['GET'])]
     public function show(Cars $car): Response
     {
+        $this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY"); 
         return $this->render('cars/show.html.twig', [
             'car' => $car,
         ]);
