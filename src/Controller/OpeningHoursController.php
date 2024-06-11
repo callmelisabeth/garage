@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/opening/hours')]
+#[Route('/opening_hours')]
 class OpeningHoursController extends AbstractController
 {
     #[Route('/horaire_ouverture', name: 'openingHours.index', methods: ['GET'])]
@@ -43,7 +43,7 @@ class OpeningHoursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'openingHours.show', methods: ['GET'])]
+    #[Route('/opening_hours/{id}', name: 'openingHours.show', methods: ['GET'])]
     public function show(OpeningHours $openingHours): Response
     {
         return $this->render('openingHours/show.html.twig', [
@@ -51,7 +51,7 @@ class OpeningHoursController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_openingHours_edit', methods: ['GET', 'POST'])]
+    #[Route('/opening_hours/{id}/edit', name: 'app_openingHours_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, OpeningHours $openingHours, EntityManagerInterface $entityManager): Response
     {
         $this->denyAccessUnlessGranted("ROLE_ADMIN");
